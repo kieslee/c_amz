@@ -1,6 +1,6 @@
 
 import sys
-import acache
+import c_amz.acache
 import json
 
 '''
@@ -15,6 +15,8 @@ f = open(sys.argv[1])
 con = f.read()
 
 item_list = json.loads(con)
+
+output = []
 
 for item in item_list:
     class_name = item['class_name']
@@ -44,4 +46,12 @@ for item in item_list:
     if class_name.startswith('Video Games'):
         continue
 
-    acache.set_value(class_name, url)
+    if class_name.startswith('Books'):
+        continue
+
+    #acache.set_value(class_name, url)
+    output.append(item)
+
+fo = open(sys.argv[2], 'w')
+fo.write(json.dumps(output))
+fo.close()

@@ -39,3 +39,43 @@ def set_value(k, v):
 
     r.set(k, v)
 
+#### LIST Operation ####
+
+def list_len(k):
+    global r
+    if r is None:
+        r = get_cache()
+
+    return r.llen(k)
+
+
+def r_push(k, v):
+    global r
+    if r is None:
+        r = get_cache()
+
+    r.rpush(k, v)
+
+
+def l_pop(k):
+    global r
+    if r is None:
+        r = get_cache()
+
+    return r.lpop(k)
+
+
+def l_index(k, index):
+    global r
+    if r is None:
+        r = get_cache()
+
+    return r.lindex(k, index)
+
+
+def l_rem(k, value):
+    global r
+    if r is None:
+        r = get_cache()
+
+    r.lrem(k, value)
