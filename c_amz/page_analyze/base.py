@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from scrapy.selector import Selector
 
 class PA_General(object):
+    __tagclass__ = 'default'
 
     def __init__(self, soup, selector):
         self.soup = soup

@@ -1,11 +1,9 @@
 import sys
 
 from spiders.page_analyze import PAGE_ITEM
-from spiders.page_analyze import clothing
 from spiders.page_analyze import register_page_analyze
 
-from bs4 import BeautifulSoup
-from scrapy.selector import Selector
+from c_amz.page_analyze import clothing
 
 
 def parse_func_test(content):

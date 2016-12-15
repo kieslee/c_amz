@@ -1,10 +1,11 @@
 import re
-from base import PA_General
-from . import register_page_analyze
+from page_analyze import PA_General
 
 pattern = re.compile('.*\n*(#\d+.*in.*)\(')
 
-class Clothing(PA_General):
+class page_analyze(PA_General):
+    __tagclass__ = 'Clothing'
+
     def get_Rank(self):
         print 'type: Clothing, do parsing'
         rank_tags = self.soup.find_all(id='SalesRank')

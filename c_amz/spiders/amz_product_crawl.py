@@ -1,21 +1,12 @@
 # -*- coding: utf-8 -*-
 import json
+
 import scrapy
-
-from page_analyze import PAGE_ITEM
-# parse class
-from page_analyze import clothing
-
-from page_analyze import register_page_analyze
-
-from acache import l_pop, r_push, l_index, l_rem
-from conf import crawl_result_succ, crawl_result_fail
-
+from acache import l_index, l_rem
 from items import ProductItem
+from page_analyze import PAGE_ITEM
 
 RE_PATTERN = ['//*[@id="productDetails_db_sections"]']
-
-register_page_analyze(clothing.Clothing)
 
 
 class AmazonSpider_01(scrapy.Spider):
@@ -29,7 +20,7 @@ class AmazonSpider_01(scrapy.Spider):
             '''
 
     def start_requests(self):
-        for i in [0,1,2,3,4]:
+        for i in [0, 1, 2, 3, 4]:
             try:
                 item_str = l_index(self.hostname, i)
                 item = json.loads(item_str)
@@ -40,7 +31,6 @@ class AmazonSpider_01(scrapy.Spider):
             r.meta['value'] = item_str
             r.meta['class_name'] = item['class_name']
             yield r
-
 
     def parse(self, response):
         item = ProductItem()

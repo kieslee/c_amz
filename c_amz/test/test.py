@@ -1,6 +1,7 @@
 
+#coding=utf-8
+
 import sys
-import c_amz.acache
 import json
 
 '''
@@ -21,6 +22,10 @@ output = []
 for item in item_list:
     class_name = item['class_name']
     url = item['url']
+
+    # 过滤所有子类
+    if class_name.find(':') >= 0:
+        continue
 
     if class_name.startswith('Gift Cards'):
         continue
