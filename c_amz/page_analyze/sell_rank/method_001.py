@@ -1,13 +1,20 @@
+
+# -*- coding: UTF-8 -*-
 import re
-from page_analyze import PA_General
 
 pattern = re.compile('.*\n*(#\d+.*in.*)\(')
 
-class page_analyze(PA_General):
-    __tagclass__ = 'Clothing'
+class GetItem(object):
+    __tagclass__ = 'method001'
+    __instruction__  = 'Clothing分类的一种方法'
+    __ex_url__ = 'https://www.amazon.com/Levis-Mens-505-Regular-Jean/dp/B001H0FVAG/ref=zg_bs_apparel_2?_encoding=UTF8&refRID=FPM24D8XBGDW9DH5NB4G&th=1&psc=1'
 
-    def get_Rank(self):
-        print 'type: Clothing, do parsing'
+    def __init__(self, soup, selector):
+        self.soup = soup
+        self.selector = selector
+
+
+    def get_item(self):
         rank_tags = self.soup.find_all(id='SalesRank')
         if len(rank_tags) != 1:
             return None
@@ -23,5 +30,3 @@ class page_analyze(PA_General):
         else:
             zg_hrsr_item = rank_tag.find_all('li')[0]
             return zg_hrsr_item.text
-
-

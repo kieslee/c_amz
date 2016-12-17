@@ -20,6 +20,8 @@ import page_analyze
 from page_analyze import find_needed_packages, register_page_analyze
 from page_analyze import display_registed_class
 
+from page_analyze import PAGE_ITEM
+
 # 设置本机的hostname，用该名字去redis中读取相应的任务
 AmazonSpider_01.hostname = conf.crawl_hostname
 
@@ -55,12 +57,9 @@ if __name__  == '__main__':
 
     display_registed_class()
 
-    '''
-    while True:
-        pid = Process(target=crawl_process, args=())
-        pid.start()
-        pid.join()
-
-        time.sleep(5)
-        '''
-    #crawl_process()
+    f = open(sys.argv[1], 'r')
+    content = f.read()
+    page_item = PAGE_ITEM(content)
+    print 'title: ', page_item.get_title()
+    print 'price: ', page_item.get_price()
+    print 'sell rank: ', page_item.get_sell_rank()
