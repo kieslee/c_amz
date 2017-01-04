@@ -14,14 +14,15 @@ import conf
 
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
-from spiders.amz_product_crawl import AmazonSpider_01
+#from spiders.amz_product_crawl import AmazonSpider_01
+from spiders.amz_download_pages import Download_Spider
 
 import page_analyze
 from page_analyze import find_needed_packages, register_page_analyze
 from page_analyze import display_registed_class
 
 # 设置本机的hostname，用该名字去redis中读取相应的任务
-AmazonSpider_01.hostname = conf.crawl_hostname
+#AmazonSpider_01.hostname = conf.crawl_hostname
 
 import multiprocessing
 from multiprocessing import Process
@@ -31,7 +32,7 @@ from acache import l_pop
 
 def crawl_process():
     process = CrawlerProcess(get_project_settings())
-    process.crawl(AmazonSpider_01)
+    process.crawl(Download_Spider)
     process.start()
 
 PAGE_ANALYZE_DIR = 'page_analyze'
@@ -63,4 +64,4 @@ if __name__  == '__main__':
 
         time.sleep(5)
         '''
-    #crawl_process()
+    crawl_process()

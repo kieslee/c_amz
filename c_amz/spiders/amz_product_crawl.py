@@ -1,6 +1,11 @@
-# -*- coding: utf-8 -*-
-import json
 
+# -*- coding: utf-8 -*-
+
+import sys
+sys.path.append('./')
+print sys.path
+
+import json
 import scrapy
 from acache import l_index, l_rem
 from items import ProductItem

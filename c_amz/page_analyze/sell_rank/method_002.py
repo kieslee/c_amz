@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 import re
 
-pattern = re.compile('.*\n*(#\d+.*in.*)\(')
+pattern = re.compile('^#.*')
 
 class GetItem(object):
     __tagclass__ = 'method002'
@@ -26,6 +26,10 @@ class GetItem(object):
             for tr in t.find_all('tr'):
                 # print tr.th.get_text()
                 if (tr.th.get_text()).find('Sellers Rank') >= 0:
-                    return tr.td.get_text().strip(' ')
+                    sell_rank = tr.td.get_text(strip=True)
+                    #sell_rank = sell_rank.strip(' ')
+                    #sell_rank = sell_rank.replace('\r', '')
+                    #sell_rank = sell_rank.replace('\n', '')
+                    return sell_rank
 
         return None

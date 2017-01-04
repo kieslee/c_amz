@@ -63,3 +63,4 @@ if __name__  == '__main__':
     print 'title: ', page_item.get_title()
     print 'price: ', page_item.get_price()
     print 'sell rank: ', page_item.get_sell_rank()
+    print 'listing: ', page_item.get_listing()
